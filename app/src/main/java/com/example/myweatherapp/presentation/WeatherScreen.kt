@@ -20,8 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myweatherapp.R
-import com.example.myweatherapp.presentation.resuable.CustomTextfield
-import com.example.myweatherapp.presentation.resuable.OtherInfo
+import com.example.myweatherapp.presentation.component.CustomTextfield
+import com.example.myweatherapp.presentation.component.OtherInfo
 
 @Composable
 fun WeatherScreen(modifier: Modifier) {

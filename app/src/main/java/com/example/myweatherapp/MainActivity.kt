@@ -12,18 +12,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.myweatherapp.core.ShimmerEffect
 import com.example.myweatherapp.presentation.WeatherScreen
+import com.example.myweatherapp.presentation.component.WeatherShimmer
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MaterialTheme{
-                WeatherScreen(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(color = Color.Cyan)
-                        .padding(26.dp)
+//                WeatherScreen(
+//                    modifier = Modifier
+//                        .fillMaxSize()
+//                        .background(color = Color.Cyan)
+//                        .padding(26.dp)
+//                )
+                ShimmerEffect(
+                    shimmerContent = {brush ->
+                        WeatherShimmer(brush)
+                    }
                 )
             }
         }

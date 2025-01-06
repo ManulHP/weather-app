@@ -1,4 +1,4 @@
-package com.example.myweatherapp.presentation.resuable
+package com.example.myweatherapp.presentation.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
