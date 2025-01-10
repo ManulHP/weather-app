@@ -111,10 +111,22 @@ fun WeatherItem(state: WeatherState) {
                     .padding(horizontal = 10.dp, vertical = 15.dp)
                     .fillMaxWidth()
             ){
-                OtherInfo(value = "${state.weather.wind.speed}Km/h", type = "Wind", image = R.drawable.airwave)
-                OtherInfo(value = "${state.weather.main.humidity}%", type = "Humidity", image = R.drawable.humidity)
-                OtherInfo(value = "${state.weather.visibility}km", type = "Visibility", image = R.drawable.visibility)
+                MainWeatherInfo(value = "${state.weather.wind.speed}Km/h", type = "Wind", image = R.drawable.airwave)
+                MainWeatherInfo(value = "${state.weather.main.humidity}%", type = "Humidity", image = R.drawable.humidity)
+                MainWeatherInfo(value = "${state.weather.visibility}km", type = "Visibility", image = R.drawable.visibility)
             }
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+        // other infor
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier
+                .fillMaxWidth()
+        ){
+            OtherWeatherInfo(value = "${state.weather.main.pressure}", type = "Pressure")
+            OtherWeatherInfo(value = "${state.weather.main.seaLevel}", type = "Sea Level")
+            OtherWeatherInfo(value = "${state.weather.main.grndLevel}", type = "Ground Level")
         }
     }
 }

@@ -20,14 +20,14 @@ class WeatherViewModel @Inject constructor(
 
     fun getWeatherData(q: String, units:String, apiKey: String) {
         viewModelScope.launch {
-            _state.value = WeatherState(isLoading = true)
+            _state.value = WeatherState(isLoading = Loading.LOADING)
             try {
                 val weather = getWeatherUseCase(q, units, apiKey)
                 Log.d("TAG", "$weather")
-                _state.value = WeatherState(weather = weather, isLoading = false)
+                _state.value = WeatherState(weather = weather, isLoading = Loading.SUCCESS)
             } catch (e: Exception) {
                 Log.d("TAG", "${e.message}")
-                _state.value = WeatherState(error = e.message, isLoading = false)
+                _state.value = WeatherState(error = e.message, isLoading = Loading.FAILURE)
             }
         }
     }
@@ -35,7 +35,14 @@ class WeatherViewModel @Inject constructor(
 
 // presentation/WeatherState.kt
 data class WeatherState(
-    val isLoading: Boolean = false,
+    val isLoading: Loading = Loading.INITIAL,
     val weather: WeatherModel? = null,
     val error: String? = null
 )
+
+enum class Loading(val value: String) {
+    INITIAL("Initial"),
+    LOADING("Loading"),
+    FAILURE("Failure"),
+    SUCCESS("Success"),
+}

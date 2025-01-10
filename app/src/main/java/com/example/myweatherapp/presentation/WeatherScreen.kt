@@ -26,10 +26,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.myweatherapp.BuildConfig
 import com.example.myweatherapp.R
 import com.example.myweatherapp.core.ShimmerEffect
-import com.example.myweatherapp.presentation.component.CustomTextfield
-import com.example.myweatherapp.presentation.component.OtherInfo
 import com.example.myweatherapp.presentation.component.WeatherItem
 import com.example.myweatherapp.presentation.component.WeatherShimmer
+import com.example.myweatherapp.presentation.viewmodel.Loading
 import com.example.myweatherapp.presentation.viewmodel.WeatherState
 import com.example.myweatherapp.presentation.viewmodel.WeatherViewModel
 
@@ -38,7 +37,7 @@ fun WeatherScreen(modifier: Modifier, viewModel: WeatherViewModel = hiltViewMode
     val state = viewModel.state.observeAsState(WeatherState()).value
 
     LaunchedEffect(Unit) {
-        viewModel.getWeatherData("Colombo", "metric" ,BuildConfig.API_KEY)
+        viewModel.getWeatherData("London", "metric" ,BuildConfig.API_KEY)
     }
 
     Scaffold {
@@ -48,13 +47,13 @@ fun WeatherScreen(modifier: Modifier, viewModel: WeatherViewModel = hiltViewMode
                 .padding(paddingValues)
         ){
 
-            if(state.isLoading) {
+            if(state.isLoading == Loading.LOADING) {
                 ShimmerEffect(
                     shimmerContent = {brush ->
                         WeatherShimmer(brush)
                     }
                 )
-            } else if(state.weather != null) {
+            } else if(state.isLoading == Loading.SUCCESS) {
                 WeatherItem(state = state)
             } else if(state.error != null) {
                 Text("error")
