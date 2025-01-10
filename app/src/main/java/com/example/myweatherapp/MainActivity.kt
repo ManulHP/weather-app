@@ -15,6 +15,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.myweatherapp.core.ShimmerEffect
+import com.example.myweatherapp.core.theme.CustomTypography
+import com.example.myweatherapp.core.theme.CyanColor
+import com.example.myweatherapp.core.theme.IndigoColor
 import com.example.myweatherapp.presentation.WeatherScreen
 import com.example.myweatherapp.presentation.component.WeatherShimmer
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,15 +27,17 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MaterialTheme{
+            MaterialTheme(
+                typography =CustomTypography,
+            ){
                 WeatherScreen(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(
                             brush = Brush.linearGradient(
                                 colors = listOf(
-                                    Color(0xFF00BCD4), // Cyan
-                                    Color(0xFF3F51B5)  // Indigo
+                                    CyanColor,
+                                    IndigoColor
                                 ),
                                 start = Offset(0f, 0f),
                                 end = Offset(Float.POSITIVE_INFINITY, Float.POSITIVE_INFINITY)

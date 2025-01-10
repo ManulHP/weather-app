@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,6 +22,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myweatherapp.R
+import com.example.myweatherapp.core.theme.BlackColor
+import com.example.myweatherapp.core.theme.CyanColor
 import com.example.myweatherapp.presentation.viewmodel.WeatherState
 import java.sql.Timestamp
 import java.time.Instant
@@ -35,8 +38,7 @@ fun WeatherItem(state: WeatherState) {
         // current location
         Text(
             text = "${state.weather?.name}",
-            fontSize = 32.sp,
-            color = Color.Black,
+            style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
         )
@@ -45,15 +47,14 @@ fun WeatherItem(state: WeatherState) {
         Card(
             shape = RoundedCornerShape(25.dp),
             colors = CardDefaults.cardColors(
-                containerColor = Color.Black // Set the background color of the Card
+                containerColor = BlackColor // Set the background color of the Card
             ),
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
         ) {
             Text(
                 text = formatDataTime(state.weather!!.dt),
-                color = Color.Cyan,
-                fontSize = 18.sp,
+                style = MaterialTheme.typography.bodySmall.copy(color = CyanColor),
                 modifier = Modifier
                     .padding(start = 15.dp, top = 10.dp, end = 15.dp, bottom = 10.dp)
             )
@@ -62,8 +63,7 @@ fun WeatherItem(state: WeatherState) {
         // weather tyoe (eg: Cloudly, rainy)
         Text(
             text = state.weather!!.weather[0].main,
-            color = Color.Black,
-            fontSize = 18.sp,
+            style = MaterialTheme.typography.bodySmall,
             modifier = Modifier
                 .padding(0.dp)
                 .align(Alignment.CenterHorizontally)
@@ -71,9 +71,7 @@ fun WeatherItem(state: WeatherState) {
         // Current weather in degrees
         Text(
             text = "${state.weather.main.temp}°",
-            fontSize = 120.sp,
-            color = Color.Black,
-            lineHeight = 28.sp,
+            style = MaterialTheme.typography.bodyLarge.copy(fontSize = 120.sp),
             modifier = Modifier
                 .padding(horizontal = 0.dp, vertical = 0.dp)
                 .align(Alignment.CenterHorizontally)
@@ -82,16 +80,12 @@ fun WeatherItem(state: WeatherState) {
         Column {
             Text(
                 text = "Daily Summary",
-                fontSize = 18.sp,
-                color = Color.Black,
+                style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold),
                 fontWeight = FontWeight.SemiBold
             )
             Text(
                 text = "Now it feels like ${state.weather.main.feelsLike}, actually it's ${state.weather.main.temp} \nIt feels hot because of the direct sun light. Today the temperature is felt in range of ${state.weather.main.tempMin} to ${state.weather.main.tempMax}",
-                fontSize = 16.sp,
-                lineHeight = 20.sp,
-                color = Color.Black,
-
+                style = MaterialTheme.typography.bodySmall.copy(lineHeight = 20.sp, fontSize = 16.sp),
                 )
         }
         Spacer(modifier = Modifier.height(20.dp))
@@ -99,7 +93,7 @@ fun WeatherItem(state: WeatherState) {
         Card(
             shape = RoundedCornerShape(10.dp),
             colors = CardDefaults.cardColors(
-                containerColor = Color.Black // Set the background color of the Card
+                containerColor = BlackColor // Set the background color of the Card
             ),
             modifier = Modifier
                 .fillMaxWidth()
