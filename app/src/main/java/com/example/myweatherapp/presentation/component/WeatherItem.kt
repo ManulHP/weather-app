@@ -70,7 +70,7 @@ fun WeatherItem(state: WeatherState) {
         )
         // Current weather in degrees
         Text(
-            text = "${state.weather.main.temp}",
+            text = "${state.weather.main.temp}°",
             fontSize = 120.sp,
             color = Color.Black,
             lineHeight = 28.sp,
@@ -108,7 +108,7 @@ fun WeatherItem(state: WeatherState) {
             Row(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 modifier = Modifier
-                    .padding(horizontal = 10.dp, vertical = 15.dp)
+                    .padding(horizontal = 5.dp, vertical = 15.dp)
                     .fillMaxWidth()
             ){
                 MainWeatherInfo(value = "${state.weather.wind.speed}Km/h", type = "Wind", image = R.drawable.airwave)
@@ -134,7 +134,7 @@ fun WeatherItem(state: WeatherState) {
 @RequiresApi(Build.VERSION_CODES.O)
 fun formatDataTime(timestamp: Long) : String {
     val instant = Instant.ofEpochSecond(timestamp)
-    val formatter = DateTimeFormatter.ofPattern("yyyy MM d")
+    val formatter = DateTimeFormatter.ofPattern("EEE, MMM dd, yyyy")
         .withZone(ZoneId.systemDefault()) // Use system's timezone
     return formatter.format(instant)
 }
