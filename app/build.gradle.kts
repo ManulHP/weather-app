@@ -13,7 +13,7 @@ if (localPropertiesFile.exists()) {
     localProperties.load(localPropertiesFile.inputStream())
 }
 
-val weatherApiKey = localProperties.getProperty("WEATHER_API_KEY")
+val weatherApiKey = localProperties.getProperty("API_KEY")
 
 android {
     namespace = "com.example.myweatherapp"
@@ -34,12 +34,12 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "WEATHER_API_KEY", "\"$weatherApiKey\"")
+            buildConfigField("String", "API_KEY", "\"$weatherApiKey\"")
         }
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            buildConfigField("String", "WEATHER_API_KEY", "\"$weatherApiKey\"")
+            buildConfigField("String", "API_KEY", "\"$weatherApiKey\"")
         }
     }
 

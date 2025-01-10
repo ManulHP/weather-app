@@ -11,7 +11,9 @@ data class WeatherModel(
     val name: String,
     val weather: List<Weather>,
     val main: Main,
-    val wind: Wind
+    val wind: Wind,
+    val visibility: Int,
+    val dt: Long
 )
 
 @Serializable

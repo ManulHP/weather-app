@@ -11,6 +11,7 @@ interface WeatherApi {
     @GET("weather")
     suspend fun getWeatherData(
         @Query("q") q: String,
+        @Query("units") units: String,
         @Query("appid") apiKey: String
     ): WeatherModel
 }

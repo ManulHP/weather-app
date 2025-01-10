@@ -9,7 +9,7 @@ import javax.inject.Inject
 // Handles the API call using the WeatherApi interface
 
 class WeatherRepositoryImp @Inject constructor(private val weatherApi: WeatherApi): WeatherRepository {
-    override suspend fun getWeather(q: String, apiKey: String): WeatherModel {
-        return weatherApi.getWeatherData(q, apiKey)
+    override suspend fun getWeather(q: String, units: String, apiKey: String): WeatherModel {
+        return weatherApi.getWeatherData(q, units, apiKey)
     }
 }
