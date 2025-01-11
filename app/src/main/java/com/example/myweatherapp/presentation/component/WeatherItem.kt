@@ -15,25 +15,42 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.myweatherapp.BuildConfig
 import com.example.myweatherapp.R
 import com.example.myweatherapp.core.theme.BlackColor
 import com.example.myweatherapp.core.theme.CyanColor
 import com.example.myweatherapp.presentation.viewmodel.WeatherState
+import com.example.myweatherapp.presentation.viewmodel.WeatherViewModel
 import java.sql.Timestamp
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 @Composable
-fun WeatherItem(state: WeatherState) {
+fun WeatherItem(state: WeatherState,  viewModel: WeatherViewModel) {
+    // search variable
+    var searchLocation by remember { mutableStateOf("")}
+
     Column {
-        CustomTextfield()
+        CustomTextField(
+            value = searchLocation,
+            onValueChange = {
+                searchLocation = it
+            },
+            onSubmitBtn = {
+                viewModel.getWeatherData(searchLocation, "metric" , BuildConfig.API_KEY)
+            }
+        )
         Spacer(modifier = Modifier.height(20.dp))
         // current location
         Text(

@@ -22,7 +22,8 @@ fun MainWeatherInfo(type: String, value: String, image:Int) {
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         CustomImage(
-            id = image
+            id = image,
+            onSubmitClick = {}
         )
         Spacer(modifier = Modifier.height(15.dp))
         Text(

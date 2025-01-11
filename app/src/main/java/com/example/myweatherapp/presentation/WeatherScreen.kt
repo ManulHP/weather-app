@@ -54,7 +54,7 @@ fun WeatherScreen(modifier: Modifier, viewModel: WeatherViewModel = hiltViewMode
                     }
                 )
             } else if(state.isLoading == Loading.SUCCESS) {
-                WeatherItem(state = state)
+                WeatherItem(state = state, viewModel= viewModel)
             } else if(state.error != null) {
                 Text("error")
             }
