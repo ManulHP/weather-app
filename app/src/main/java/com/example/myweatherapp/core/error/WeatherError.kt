@@ -26,14 +26,14 @@ fun WeatherError(error: String) {
     Card(
         shape = RoundedCornerShape(10.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.Transparent // Set the background color of the Card
+            containerColor = Color.Transparent
         ),
         modifier = Modifier
             .fillMaxWidth()
             .border(
-                width = 2.dp, // Thickness of the border
-                color = BlackColor, // Border color
-                shape = RoundedCornerShape(10.dp) // Optional: Border shape
+                width = 2.dp,
+                color = BlackColor,
+                shape = RoundedCornerShape(10.dp)
             )
     ){
         Column(

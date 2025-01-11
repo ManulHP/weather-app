@@ -1,5 +1,6 @@
 package com.example.myweatherapp.data.model
 
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -27,13 +28,13 @@ data class Weather(
 @Serializable
 data class  Main(
     val temp: Double,
-    @SerialName(value = "feels_like") val feelsLike: Double,
-    @SerialName(value = "temp_min") val tempMin: Double,
-    @SerialName(value = "temp_max") val tempMax: Double,
+    @SerializedName(value = "feels_like") val feelsLike: Double,
+    @SerializedName(value = "temp_min") val tempMin: Double,
+    @SerializedName(value = "temp_max") val tempMax: Double,
     val pressure: Int,
     val humidity: Int,
-    @SerialName(value = "sea_level") val seaLevel: Int,
-    @SerialName(value = "grnd_level") val grndLevel: Int
+    @SerializedName(value = "sea_level") val seaLevel: Int,
+    @SerializedName(value = "grnd_level") val grndLevel: Int
 )
 
 @Serializable
