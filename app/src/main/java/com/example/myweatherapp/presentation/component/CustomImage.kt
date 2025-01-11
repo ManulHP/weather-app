@@ -9,13 +9,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.example.myweatherapp.core.theme.CyanColor
 
 @Composable
-fun CustomImage(id: Int, size: Int?=35, onSubmitClick: () -> Unit) {
+fun CustomImage(id: Int, size: Int?=35, onSubmitClick: () -> Unit, color: Color = CyanColor) {
     Image(
         painter = painterResource(id = id),
         contentDescription = "Wind",
-        colorFilter = ColorFilter.tint(Color.Cyan),
+        colorFilter = ColorFilter.tint(color),
         modifier = Modifier
             .size(size!!.dp)
             .clickable {
