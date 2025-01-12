@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -40,8 +42,13 @@ import java.time.format.DateTimeFormatter
 fun WeatherItem(state: WeatherState,  viewModel: WeatherViewModel) {
     // search variable
     var searchLocation by remember { mutableStateOf("")}
+    // scroll
+    val scrollState = rememberScrollState()
 
-    Column {
+    Column (
+        modifier = Modifier
+            .verticalScroll(scrollState)
+    ){
         CustomTextField(
             value = searchLocation,
             onValueChange = {
@@ -101,7 +108,7 @@ fun WeatherItem(state: WeatherState,  viewModel: WeatherViewModel) {
                 fontWeight = FontWeight.SemiBold
             )
             Text(
-                text = "Now it feels like ${state.weather.main.feelsLike}, actually it's ${state.weather.main.temp} \nIt feels hot because of the direct sun light. Today the temperature is felt in range of ${state.weather.main.tempMin} to ${state.weather.main.tempMax}",
+                text = "Now it feels like ${state.weather.main.feelsLike}°, actually it's ${state.weather.main.temp}° \nIt feels hot because of the direct sun light. Today the temperature is felt in range of ${state.weather.main.tempMin}° to ${state.weather.main.tempMax}°",
                 style = MaterialTheme.typography.bodySmall.copy(lineHeight = 20.sp, fontSize = 16.sp),
                 )
         }
@@ -135,7 +142,7 @@ fun WeatherItem(state: WeatherState,  viewModel: WeatherViewModel) {
             modifier = Modifier
                 .fillMaxWidth()
         ){
-            OtherWeatherInfo(value = "${state.weather.main.pressure}", type = "Pressure")
+            OtherWeatherInfo(value = "${state.weather.main.pressure}Pa", type = "Pressure")
             OtherWeatherInfo(value = "${state.weather.main.seaLevel}", type = "Sea Level")
             OtherWeatherInfo(value = "${state.weather.main.grndLevel}", type = "Ground Level")
         }

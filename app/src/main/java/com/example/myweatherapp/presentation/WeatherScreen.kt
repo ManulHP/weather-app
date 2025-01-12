@@ -1,6 +1,7 @@
 package com.example.myweatherapp.presentation
 
 import android.util.Log
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +28,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.myweatherapp.BuildConfig
 import com.example.myweatherapp.R
 import com.example.myweatherapp.core.ShimmerEffect
+import com.example.myweatherapp.core.error.WeatherError
+import com.example.myweatherapp.core.theme.BlackColor
+import com.example.myweatherapp.core.theme.CyanColor
+import com.example.myweatherapp.presentation.component.CustomImage
 import com.example.myweatherapp.presentation.component.WeatherItem
 import com.example.myweatherapp.presentation.component.WeatherShimmer
 import com.example.myweatherapp.presentation.viewmodel.Loading
@@ -55,8 +61,8 @@ fun WeatherScreen(modifier: Modifier, viewModel: WeatherViewModel = hiltViewMode
                 )
             } else if(state.isLoading == Loading.SUCCESS) {
                 WeatherItem(state = state, viewModel= viewModel)
-            } else if(state.error != null) {
-                Text("error")
+            } else if(state.isLoading == Loading.FAILURE) {
+                WeatherError(error = state.error ?: "Failure. Please try again!!")
             }
         }
     }

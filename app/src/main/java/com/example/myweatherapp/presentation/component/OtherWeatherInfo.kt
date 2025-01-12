@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.myweatherapp.core.theme.BlackColor
 import com.example.myweatherapp.core.theme.CyanColor
 
 @Composable
@@ -22,7 +23,7 @@ fun OtherWeatherInfo(type: String, value: String) {
     Card(
         shape = RoundedCornerShape(25.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.Black // Set the background color of the Card
+            containerColor = BlackColor
         ),
     ) {
         Column (
